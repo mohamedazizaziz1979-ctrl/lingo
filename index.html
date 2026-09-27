@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>لينجو ليرن | مستر محمد عبد العزيز</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#EFF5F4; --surface:#FFFFFF; --surface2:#E4EFED; --ink:#12262B; --muted:#5A7075; --line:#D3E1DF;
+  --brand:#0B7C86; --brand-ink:#FFFFFF; --brand-soft:#D3EEF0;
+  --gold:#F2B33D; --gold-soft:#FFF0CC;
+  --plum:#5B4B9A; --plum-soft:#E7E2F7; --plum-ink:#FFFFFF;
+  --good:#17925B; --good-soft:#DDF5E8; --bad:#CF4547; --bad-soft:#FBE1E1;
+  --side:#0D3B40; --side-ink:#E6F4F3; --side-muted:#9CC3C3;
+  --shadow:0 1px 2px rgba(13,59,64,.08),0 6px 20px rgba(13,59,64,.06);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1619; --surface:#122227; --surface2:#1A2E34; --ink:#E6F1F0; --muted:#93AAAE; --line:#25414A;
+    --brand:#38C1CC; --brand-ink:#062126; --brand-soft:#12383F;
+    --gold:#F5C25A; --gold-soft:#3A2F14;
+    --plum:#A99BEA; --plum-soft:#2A2350; --plum-ink:#1B1440;
+    --good:#4CD08A; --good-soft:#123324; --bad:#F27A7C; --bad-soft:#3B1A1B;
+    --side:#081114; --side-ink:#E6F1F0; --side-muted:#7F9CA0;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1619; --surface:#122227; --surface2:#1A2E34; --ink:#E6F1F0; --muted:#93AAAE; --line:#25414A;
+  --brand:#38C1CC; --brand-ink:#062126; --brand-soft:#12383F;
+  --gold:#F5C25A; --gold-soft:#3A2F14;
+  --plum:#A99BEA; --plum-soft:#2A2350; --plum-ink:#1B1440;
+  --good:#4CD08A; --good-soft:#123324; --bad:#F27A7C; --bad-soft:#3B1A1B;
+  --side:#081114; --side-ink:#E6F1F0; --side-muted:#7F9CA0;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.25);
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.75 'Readex Pro','Segoe UI',Tahoma,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.en{font-family:'Atkinson Hyperlegible','Readex Pro','Segoe UI',Arial,sans-serif;direction:ltr;text-align:left;unicode-bidi:isolate}
+.ic{flex:none}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:8px}
+
+/* stage accents */
+.s-primary{--ac:var(--gold);--ac-soft:var(--gold-soft);--ac-ink:#2B2000}
+.s-prep{--ac:var(--brand);--ac-soft:var(--brand-soft);--ac-ink:var(--brand-ink)}
+.s-secondary{--ac:var(--plum);--ac-soft:var(--plum-soft);--ac-ink:var(--plum-ink)}
+
+/* layout */
+.app{display:flex;min-height:100vh}
+.side{width:284px;flex:none;background:var(--side);color:var(--side-ink);position:sticky;top:0;height:100vh;display:flex;flex-direction:column;padding:16px 12px;gap:6px;overflow:hidden;transition:width .25s ease;z-index:40}
+.app[data-side="collapsed"] .side{width:76px}
+.brand{display:flex;align-items:center;gap:12px;padding:6px 8px 14px}
+.logo{width:40px;height:40px;border-radius:12px;background:var(--gold);color:#2B2000;display:grid;place-items:center;font-weight:700;flex:none;font-size:19px}
+.brand b{font-size:18px;line-height:1.2;display:block}
+.brand small{color:var(--side-muted);font-size:12px}
+.nav{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border:0;border-radius:12px;background:none;color:inherit;text-align:start;min-height:44px;transition:background .15s}
+.nav:hover{background:rgba(255,255,255,.09)}
+.nav[aria-current="page"]{background:rgba(255,255,255,.16);font-weight:600}
+.nav .chev{margin-inline-start:auto;transition:transform .2s}
+.nav[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.g-body{display:grid;gap:2px;padding-inline-start:14px;margin:2px 0 6px}
+.g-body[hidden]{display:none}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.side-title{color:var(--side-muted);font-size:13px;padding:14px 12px 4px;margin:0}
+.side-title span{display:block;color:var(--side-ink);font-weight:600;font-size:15px}
+.side nav{display:flex;flex-direction:column;gap:2px;overflow-y:auto;flex:1;min-height:0}
+.side-foot{border-top:1px solid rgba(255,255,255,.12);padding-top:8px;display:grid;gap:2px}
+.lbl{white-space:nowrap}
+.app[data-side="collapsed"] .lbl,.app[data-side="collapsed"] .g-body,.app[data-side="collapsed"] .side-title,.app[data-side="collapsed"] .brand div:last-child,.app[data-side="collapsed"] .chev{display:none}
+.app[data-side="collapsed"] .nav{justify-content:center;padding-inline:0}
+.scrim{display:none}
+.wrap{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;gap:10px;padding:10px 18px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.icon-btn{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none}
+.icon-btn:hover{background:var(--surface2)}
+.crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:14px;color:var(--muted);flex:1;min-width:0}
+.crumbs button{background:none;border:0;color:var(--muted);padding:2px 4px;border-radius:6px}
+.crumbs button:hover{color:var(--ink);text-decoration:underline}
+.crumbs b{color:var(--ink);font-weight:600}
+main{padding:24px 18px 60px;max-width:1120px;width:100%;margin-inline:auto}
+h1,h2,h3{line-height:1.3;margin:0 0 .4em}
+h1{font-size:clamp(26px,4.2vw,40px);font-weight:700}
+h2{font-size:22px;font-weight:600}
+h3{font-size:18px;font-weight:600}
+p{margin:0 0 .8em}
+.muted{color:var(--muted)}
+
+/* buttons and bits */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-weight:500;min-height:44px}
+.btn:hover{background:var(--surface2)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#2B2000}
+.btn.sm{min-height:36px;padding:6px 14px;font-size:14px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:99px;background:var(--surface2);font-size:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+.spk{width:42px;height:42px;border-radius:50%;border:0;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;flex:none;transition:transform .12s,background .15s}
+.spk:hover{background:var(--brand);color:var(--brand-ink)}
+.spk:active{transform:scale(.92)}
+.spk.sm{width:34px;height:34px}
+.spk.on{background:var(--brand);color:var(--brand-ink)}
+
+/* home */
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:center;margin-bottom:34px}
+.hero p.lead{font-size:18px;color:var(--muted);max-width:56ch}
+.path{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px 24px;box-shadow:var(--shadow)}
+.path h3{margin-bottom:14px}
+.path ol{list-style:none;margin:0;padding:0;position:relative}
+.path li{display:flex;align-items:center;gap:14px;padding:9px 0;position:relative}
+.path li::before{content:"";position:absolute;inset-inline-start:19px;top:-50%;height:100%;width:2px;background:var(--line);z-index:0}
+.path li:first-child::before{display:none}
+.path .node{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:var(--brand-ink);position:relative;z-index:1;flex:none}
+.path li:nth-child(2) .node{background:var(--gold);color:#2B2000}
+.path li:nth-child(3) .node{background:var(--plum);color:var(--plum-ink)}
+.path li:nth-child(4) .node{background:var(--good);color:#fff}
+.path li:nth-child(5) .node{background:var(--ink);color:var(--bg)}
+.path li:nth-child(6) .node{background:var(--bad);color:#fff}
+.stages{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.stage{border-radius:20px;padding:22px;background:var(--ac-soft);border:1px solid color-mix(in srgb,var(--ac) 40%,transparent)}
+.stage h2{margin-bottom:2px}
+.stage .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{border:1px solid color-mix(in srgb,var(--ac) 55%,transparent);background:var(--surface);border-radius:99px;padding:5px 14px;font-size:14px;min-height:36px}
+.chip:hover{background:var(--ac);color:var(--ac-ink)}
+.chip.live{border-color:var(--ac);font-weight:600}
+.note{margin-top:22px;padding:14px 18px;border-radius:14px;background:var(--gold-soft);font-size:14px}
+
+/* grades / units */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.gcard{text-align:start;border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);border-top:5px solid var(--ac)}
+.gcard:hover{transform:translateY(-2px)}
+.gcard small{color:var(--muted)}
+.gcard.soon{opacity:.72}
+.unit{margin-bottom:16px}
+.unit-h{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.unit-n{width:44px;height:44px;border-radius:14px;background:var(--ac);color:var(--ac-ink);display:grid;place-items:center;font-weight:700}
+.lrow{display:flex;align-items:center;gap:12px;width:100%;text-align:start;padding:13px 16px;border-radius:14px;border:1px solid var(--line);background:var(--surface);margin-bottom:8px;min-height:52px}
+.lrow:hover{border-color:var(--ac);background:var(--ac-soft)}
+.lrow .bar{margin-inline-start:auto}
+.bar{width:90px;height:8px;border-radius:9px;background:var(--surface2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--good)}
+.empty{text-align:center;padding:40px 20px;border:2px dashed var(--line);border-radius:20px;color:var(--muted)}
+
+/* lesson */
+.lhead{background:var(--ac);color:var(--ac-ink);border-radius:22px;padding:24px 26px;margin-bottom:18px}
+.lhead h1{margin:2px 0}
+.lhead p{margin:0;opacity:.9}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 10px;margin-bottom:8px;scrollbar-width:thin}
+.tab{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface);white-space:nowrap;min-height:44px}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.vrow{display:grid;grid-template-columns:auto 1fr 1fr;gap:6px 16px;align-items:center;padding:12px 4px;border-bottom:1px solid var(--line);transition:background .2s}
+.vrow.hl{background:var(--brand-soft)}
+.vrow .w{font-size:22px;font-weight:700}
+.vrow .m{font-size:18px}
+.vrow .ex{grid-column:2 / -1;color:var(--muted);display:flex;align-items:center;gap:8px;font-size:16px}
+.vid{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:16px;background:#000}
+.f{width:100%}
+.form label{display:block;font-weight:600;margin:16px 0 6px}
+.form small{color:var(--muted);font-weight:400}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.err{color:var(--bad);font-weight:600;min-height:24px;margin-top:10px}
+[hidden]{display:none !important}
+code{background:var(--surface2);padding:1px 6px;border-radius:6px;font-size:14px}
+.gate{position:fixed;inset:0;background:rgba(6,20,23,.6);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
+.gate .card{max-width:340px;width:100%;margin:0}
+.gate input{width:100%;margin:12px 0}
+.tbtn{width:34px;height:34px;border-radius:10px;border:0;background:transparent;color:var(--side-muted);display:grid;place-items:center;opacity:.55}
+.tbtn:hover{opacity:1;background:rgba(255,255,255,.1);color:var(--side-ink)}
+.tfoot{display:flex;justify-content:flex-end;padding:2px 4px 0}
+.tbadge{background:var(--gold-soft);color:#5A4300;border-radius:10px;padding:8px 12px;font-size:13px;margin-bottom:14px;display:flex;align-items:center;gap:8px;justify-content:space-between}
+.listen{font-size:20px;line-height:2.1}
+.sent{border-radius:8px;padding:2px 3px;cursor:pointer;transition:background .2s}
+.sent:hover{background:var(--surface2)}
+.sent.on{background:var(--gold);color:#2B2000}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.seg button{border:0;background:var(--surface);padding:8px 14px;min-height:40px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+/* games */
+.gmenu{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:18px}
+.gm{text-align:start;border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:18px;display:grid;gap:6px;box-shadow:var(--shadow)}
+.gm:hover{border-color:var(--brand)}
+.gm[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-soft)}
+.ghead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mcol{display:grid;gap:10px;align-content:start}
+.tile{padding:14px;border-radius:14px;border:2px solid var(--line);background:var(--surface);font-size:18px;min-height:56px}
+.tile:hover:not(:disabled){border-color:var(--brand)}
+.tile.sel{border-color:var(--brand);background:var(--brand-soft)}
+.tile.ok{border-color:var(--good);background:var(--good-soft);color:var(--good);opacity:.85}
+.tile.bad{border-color:var(--bad);background:var(--bad-soft);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.opts{display:grid;gap:10px}
+.opt{padding:14px 18px;border-radius:14px;border:2px solid var(--line);background:var(--surface);text-align:start;font-size:18px;min-height:52px}
+.opt:hover:not(:disabled){border-color:var(--brand)}
+.opt.ok{border-color:var(--good);background:var(--good-soft)}
+.opt.no{border-color:var(--bad);background:var(--bad-soft)}
+.big{font-size:clamp(28px,6vw,44px);font-weight:700;text-align:center;margin:14px 0}
+.tiles{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0}
+.tiles .tile{min-width:52px;text-transform:lowercase;font-weight:700;font-size:22px}
+.slots{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;min-height:60px;direction:ltr;margin:8px 0}
+.slot{width:48px;height:56px;border-bottom:4px solid var(--line);display:grid;place-items:center;font-size:26px;font-weight:700}
+.tin,.ta,select{border:2px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 14px;min-height:44px;max-width:100%}
+.tin:focus,.ta:focus,select:focus{border-color:var(--brand);outline:none}
+.tin.center{width:min(360px,100%);display:block;margin:12px auto;text-align:center;font-size:22px}
+.ta{width:100%;resize:vertical;line-height:1.7}
+.result{text-align:center;padding:26px 10px}
+.result .score{font-size:56px;font-weight:700;color:var(--brand)}
+.fb{text-align:center;min-height:30px;font-weight:600}
+.fb.ok{color:var(--good)}.fb.no{color:var(--bad)}
+
+/* exam */
+.exam .q{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px}
+.exam .q h3{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.exam .q h3 small{font-weight:400;color:var(--muted)}
+.dl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.dl b{min-width:54px}
+.box{display:flex;flex-wrap:wrap;gap:8px;padding:12px;border:2px dashed var(--line);border-radius:14px;margin-bottom:14px;direction:ltr}
+.box span{background:var(--gold-soft);padding:3px 14px;border-radius:99px;font-weight:700}
+.passage{background:var(--surface2);border-radius:14px;padding:16px 18px;margin-bottom:14px;font-size:18px;line-height:2}
+.qq{margin:14px 0}
+.qq>p{font-weight:600;margin-bottom:6px}
+.op{display:flex;align-items:center;gap:10px;padding:6px 4px;min-height:40px;cursor:pointer}
+.op input{width:20px;height:20px;accent-color:var(--brand)}
+.it{display:inline-block;border-radius:10px;padding:1px 2px}
+.it.opts{display:block}
+.it.right{background:var(--good-soft);outline:2px solid var(--good)}
+.it.wrong{background:var(--bad-soft);outline:2px solid var(--bad)}
+.fix{display:block;font-size:14px;color:var(--bad);font-weight:600;padding:2px 6px}
+.fix.inl{display:inline;margin-inline-start:6px}
+.br{color:var(--brand);font-weight:700}
+.model{margin-top:8px;padding:10px 14px;border-radius:12px;background:var(--good-soft);font-size:15px}
+.model[hidden]{display:none}
+.wc{font-weight:600}.wc.ok{color:var(--good)}.wc.no{color:var(--bad)}
+.sum{position:sticky;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);background:var(--ink);color:var(--bg);border-radius:16px;padding:14px 18px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;box-shadow:var(--shadow)}
+.sum .btn{background:var(--gold);border-color:var(--gold);color:#2B2000}
+.toast{position:fixed;inset-inline:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);margin-inline:auto;max-width:420px;background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:14px;z-index:99;text-align:center}
+
+@media (max-width:900px){
+  .side{position:fixed;top:0;bottom:0;right:0;height:auto;width:292px !important;transform:translateX(100%);padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));transition:transform .25s ease;box-shadow:-10px 0 40px rgba(0,0,0,.35)}
+  .app.mobile-open .side{transform:none}
+  .app[data-side="collapsed"] .lbl,.app[data-side="collapsed"] .side-title,.app[data-side="collapsed"] .brand div:last-child,.app[data-side="collapsed"] .chev{display:revert}
+  .app[data-side="collapsed"] .g-body{display:grid}
+  .app[data-side="collapsed"] .g-body[hidden]{display:none}
+  .app[data-side="collapsed"] .nav{justify-content:flex-start;padding-inline:12px}
+  .scrim{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:30}
+  .app.mobile-open .scrim{opacity:1;pointer-events:auto}
+  .hero{grid-template-columns:1fr}
+  .stages{grid-template-columns:1fr}
+  .mgrid{gap:10px}
+  .vrow{grid-template-columns:auto 1fr}
+  .vrow .m{grid-column:2}
+  .vrow .ex{grid-column:1 / -1}
+  main{padding:18px 14px 60px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
+</style>
+</head>
+<body>
+<div class="app" id="app" data-side="open">
+  <aside class="side" id="side" aria-label="القائمة الجانبية">
+    <div class="brand">
+      <div class="logo en">L</div>
+      <div><b>لينجو ليرن</b><small>مستر محمد عبد العزيز</small></div>
+    </div>
+    <nav id="nav"></nav>
+    <div class="side-foot" id="foot"></div>
+  </aside>
+  <div class="scrim" data-act="closeSide"></div>
+  <div class="wrap">
+    <header class="top">
+      <button class="icon-btn" data-act="toggleSide" aria-label="إظهار أو إخفاء القائمة" id="menuBtn"></button>
+      <div class="crumbs" id="crumbs"></div>
+      <button class="icon-btn" data-act="theme" aria-label="تبديل الوضع الليلي" id="themeBtn"></button>
+    </header>
+    <main id="main"></main>
+  </div>
+</div>
+
+<script>
+/* ============ بيانات المنصة ============ */
+const STAGES=[
+ {id:'primary',ar:'المرحلة الابتدائية',short:'الابتدائية',cls:'s-primary',desc:'من الصف الأول إلى السادس',
+  grades:[['pr1','الصف الأول الابتدائي'],['pr2','الصف الثاني الابتدائي'],['pr3','الصف الثالث الابتدائي'],['pr4','الصف الرابع الابتدائي'],['pr5','الصف الخامس الابتدائي'],['pr6','الصف السادس الابتدائي']]},
+ {id:'prep',ar:'المرحلة الإعدادية',short:'الإعدادية',cls:'s-prep',desc:'من الصف الأول إلى الثالث',
+  grades:[['pp1','الصف الأول الإعدادي'],['pp2','الصف الثاني الإعدادي'],['pp3','الصف الثالث الإعدادي']]}
+];
+
+/* لإضافة محتوى صف جديد: أضف مفتاحًا بمعرّف الصف (مثل pp2) بنفس بنية pp1.
+   لإضافة فيديو لدرس: video:'رابط يوتيوب أو Vimeo أو mp4' وملخص مكتوب اختياري: notes:'...' */
+const BASE={
+ pp1:{units:[{
+  en:'Family and Friends',ar:'العائلة والأصدقاء',
+  lessons:[
+  {
+   en:'My Family',ar:'عائلتي',
+   vocab:[
+    {w:'family',ar:'عائلة',ex:'We are a big family.'},
+    {w:'mother',ar:'أم',ex:'My mother cooks dinner every evening.'},
+    {w:'father',ar:'أب',ex:'My father works in a bank.'},
+    {w:'brother',ar:'أخ',ex:'I have one brother.'},
+    {w:'sister',ar:'أخت',ex:'My sister is eight years old.'},
+    {w:'grandfather',ar:'جد',ex:'My grandfather lives in Alexandria.'},
+    {w:'grandmother',ar:'جدة',ex:'My grandmother tells us stories.'},
+    {w:'uncle',ar:'عم / خال',ex:'My uncle is a doctor.'},
+    {w:'aunt',ar:'عمة / خالة',ex:'My aunt visits us on Fridays.'},
+    {w:'cousin',ar:'ابن العم / ابن الخال',ex:'My cousin is my best friend.'},
+    {w:'kind',ar:'لطيف / طيب',ex:'My grandmother is very kind.'},
+    {w:'together',ar:'معًا',ex:'We eat lunch together on Friday.'}
+   ],
+   listen:{title:'Omar and his family',text:"My name is Omar. I am twelve years old and I live in Cairo with my family. There are five people in my family. My father is an engineer and my mother is a teacher. I have one brother and one sister. My brother, Youssef, is fifteen. My sister, Salma, is eight. Every Friday, we visit my grandparents. My grandfather is very funny, and my grandmother is very kind. She cooks delicious food for us. My uncle and my aunt come too, with my cousin, Nour. We eat lunch together and play games in the garden. I love my family very much."},
+   exam:{
+    conv:[
+     {who:'Ali',text:'Hello, Omar! How are you?'},
+     {who:'Omar',gap:{o:["I'm fine, thank you.","I'm twelve years old.","It's on the table."],a:0}},
+     {who:'Ali',text:'How many people are there in your family?'},
+     {who:'Omar',gap:{o:['He is an engineer.','There are five people.','I like pizza.'],a:1}},
+     {who:'Ali',text:'What does your father do?'},
+     {who:'Omar',gap:{o:['We live in Cairo.','She is my sister.','He is an engineer.'],a:2}},
+     {who:'Ali',text:'Do you visit your grandparents?'},
+     {who:'Omar',gap:{o:['Yes, we visit them every Friday.','No, he is a doctor.','Yes, it is.'],a:0}}
+    ],
+    cloze:{box:['kind','together','cousin','family','brother','cooks','uncle'],
+     text:'I have a big {1}. My {2} Youssef is fifteen years old. My grandmother is very {3}. She {4} delicious food. We eat lunch {5} on Fridays. My {6} Nour plays with me in the garden.',
+     ans:['family','brother','kind','cooks','together','cousin']},
+    read:{title:'A Family Day in the Park',
+     text:"Last Friday, the Hassan family spent a wonderful day at Al-Azhar Park in Cairo. Mr. Hassan drove the car, and Mrs. Hassan brought sandwiches, fruit and cold juice. Their two children, Mona and Karim, were very excited. When they arrived, Mona ran to the playground, but Karim helped his father carry the bags. Then, the family sat under a big tree and had lunch together. After lunch, Mr. Hassan played football with Karim, while Mona and her mother walked around the beautiful gardens and took photos. In the evening, they were tired but happy. On the way home, Mona said, \"This was the best day of my life!\"",
+     mcq:[{q:'Where did the Hassan family go?',o:['To Alexandria.','To Al-Azhar Park.','To the school.'],a:1},
+          {q:'Who helped Mr. Hassan carry the bags?',o:['Mona','Mrs. Hassan','Karim'],a:2}],
+     wr:[{q:'What did Mrs. Hassan bring?',m:'She brought sandwiches, fruit and cold juice.'},
+         {q:'What did Mona and her mother do after lunch?',m:'They walked around the gardens and took photos.'},
+         {q:'How did the family feel in the evening?',m:'They were tired but happy.'}]},
+    mcq:[
+     {q:'My mother is a teacher. ___ works at a school.',o:['He','She','It'],a:1},
+     {q:'There ___ five people in my family.',o:['is','am','are'],a:2},
+     {q:"My father's brother is my ___.",o:['uncle','cousin','aunt'],a:0},
+     {q:'We ___ our grandparents every Friday.',o:['visits','visit','visiting'],a:1},
+     {q:'My sister ___ eight years old.',o:['are','is','am'],a:1}
+    ],
+    rewrite:[
+     {s:'Omar lives in Cairo.',b:'Where',m:'Where does Omar live?'},
+     {s:'Salma is eight years old.',b:'Is',m:'Is Salma eight years old?'},
+     {s:'My cousin plays in the garden.',b:'every Friday',m:'My cousin plays in the garden every Friday.'}
+    ],
+    fix:[
+     {s:'My brother (have) a new bike.',a:'has'},
+     {s:'There (is) five people in my family.',a:'are'},
+     {s:'My grandmother (cook) delicious food.',a:'cooks'},
+     {s:'We (visits) our uncle on Fridays.',a:'visit'},
+     {s:'She (are) very kind.',a:'is'}
+    ],
+    para:{topic:'Write a paragraph of no less than 100 words about your family.',tips:['Who is in your family?','What do they do?','How old are they?','What do you do together?']}
+   }
+  },
+  {
+   en:'My Daily Routine',ar:'روتيني اليومي',
+   vocab:[
+    {w:'wake up',ar:'يستيقظ',ex:'I wake up at six o\'clock.'},
+    {w:'brush',ar:'يفرّش',ex:'I brush my teeth twice a day.'},
+    {w:'breakfast',ar:'وجبة الإفطار',ex:'We have breakfast at seven.'},
+    {w:'school',ar:'مدرسة',ex:'I go to school by bus.'},
+    {w:'lesson',ar:'حصة / درس',ex:'We have six lessons every day.'},
+    {w:'homework',ar:'واجب منزلي',ex:'I do my homework after lunch.'},
+    {w:'dinner',ar:'عشاء',ex:'We have dinner at eight.'},
+    {w:'sleep',ar:'ينام',ex:'I go to sleep at nine thirty.'},
+    {w:'always',ar:'دائمًا',ex:'I always wake up early.'},
+    {w:'usually',ar:'عادةً',ex:'I usually have eggs for breakfast.'},
+    {w:'sometimes',ar:'أحيانًا',ex:'Sometimes I play with my cousin.'}
+   ],
+   listen:{title:"Salma's day",text:"Hi! My name is Salma and this is my daily routine. I always wake up at six o'clock in the morning. First, I brush my teeth and wash my face. Then I have breakfast with my family. I usually have eggs, cheese and a glass of milk. At seven thirty, I go to school by bus. We have six lessons every day, and my favourite lesson is English. I get home at two o'clock and have lunch. After that, I do my homework. Sometimes I play with my cousin in the afternoon. We have dinner at eight o'clock. Finally, I read a short story and go to sleep at nine thirty."},
+   exam:{
+    conv:[
+     {who:'Mona',text:'What time do you wake up?'},
+     {who:'Salma',gap:{o:["I wake up at six o'clock.",'I have breakfast.','It is a lesson.'],a:0}},
+     {who:'Mona',text:'Do you go to school by bus?'},
+     {who:'Salma',gap:{o:['Yes, I am.','Yes, I do.',"No, it isn't."],a:1}},
+     {who:'Mona',text:'What is your favourite lesson?'},
+     {who:'Salma',gap:{o:['I have breakfast at seven.','She is my friend.','My favourite lesson is English.'],a:2}},
+     {who:'Mona',text:'When do you do your homework?'},
+     {who:'Salma',gap:{o:["It's a new book.",'I do it after lunch.','He goes to bed.'],a:1}}
+    ],
+    cloze:{box:['wake','brush','breakfast','school','homework','sleep','usually'],
+     text:'Every morning, I {1} up at six o\'clock. I {2} my teeth and have {3}. Then I go to {4} by bus. In the afternoon, I do my {5}. I {6} have dinner at eight, and I go to {7} at nine thirty.',
+     ans:['wake','brush','breakfast','school','homework','usually','sleep']},
+    read:{title:'A Busy Day for Dr. Amira',
+     text:"Dr. Amira is a doctor in a hospital in Assiut. Her day is very busy. She wakes up at five thirty every morning and has a light breakfast. At seven o'clock, she drives to the hospital, and it takes her twenty minutes. She usually sees about thirty patients a day. At two o'clock, she has lunch in the hospital garden with her friend, Dr. Hany. In the evening, she goes home and helps her son, Adam, with his homework. Sometimes, they cook dinner together. Dr. Amira loves her job, but she always tries to sleep early because she needs to be ready for the next day.",
+     mcq:[{q:'Where does Dr. Amira work?',o:['At a school.','In a hospital.','In a bank.'],a:1},
+          {q:'How long does it take her to reach the hospital?',o:['Twenty minutes.','Two hours.','Five minutes.'],a:0}],
+     wr:[{q:'What time does she wake up?',m:'She wakes up at five thirty.'},
+         {q:'Who does she have lunch with?',m:'She has lunch with her friend, Dr. Hany.'},
+         {q:'What does she do in the evening?',m:'She goes home and helps her son with his homework.'}]},
+    mcq:[
+     {q:'She ___ to school by bus.',o:['go','goes','going'],a:1},
+     {q:'We have breakfast ___ seven o\'clock.',o:['in','on','at'],a:2},
+     {q:'I ___ my homework after lunch.',o:['do','does','doing'],a:0},
+     {q:'My brother ___ plays football on Fridays.',o:['sometime','some time','sometimes'],a:2},
+     {q:'What time ___ you wake up?',o:['does','do','are'],a:1}
+    ],
+    rewrite:[
+     {s:'I wake up at six o\'clock.',b:'She',m:'She wakes up at six o\'clock.'},
+     {s:'Salma goes to school by bus.',b:'Does',m:'Does Salma go to school by bus?'},
+     {s:'They have dinner at eight.',b:'What time',m:'What time do they have dinner?'}
+    ],
+    fix:[
+     {s:'My father (wake) up at five.',a:'wakes'},
+     {s:'She (do) her homework every day.',a:'does'},
+     {s:'The children (goes) to school early.',a:'go'},
+     {s:'He (have) breakfast at seven.',a:'has'},
+     {s:'I (brushes) my teeth twice a day.',a:'brush'}
+    ],
+    para:{topic:'Write a paragraph of no less than 100 words about your daily routine.',tips:['What time do you wake up?','What do you have for breakfast?','How do you go to school?','What do you do in the afternoon and evening?']}
+   }
+  }]
+ }]}
+};
+
+/* ============ أدوات ============ */
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const norm=s=>String(s).trim().toLowerCase().replace(/[’']/g,"'").replace(/\s+/g,' ');
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+/* المحتوى = المدمج + content.json المرفوع مع الموقع + الدروس المضافة على هذا الجهاز */
+let FILE={},LOCAL=store.get('ne.custom',{}),CONTENT=BASE;
+let EDIT=null,EDIT_EXAM=null;
+function mergeContent(a,b){
+  const o=JSON.parse(JSON.stringify(a||{}));
+  for(const g in (b||{})){
+    if(g.charAt(0)==='_')continue;
+    const bu=(b[g]&&b[g].units)||[];o[g]=o[g]||{units:[]};
+    bu.forEach(u=>{let t=o[g].units.find(x=>norm(x.en)===norm(u.en));
+      if(!t){t={en:u.en,ar:u.ar||'',lessons:[]};o[g].units.push(t)}
+      (u.lessons||[]).forEach(l=>{const i=t.lessons.findIndex(x=>norm(x.en)===norm(l.en));if(i>=0)t.lessons[i]=l;else t.lessons.push(l)})})
+  }
+  return o;
+}
+function rebuild(){CONTENT=mergeContent(mergeContent(BASE,FILE),LOCAL);applyTombstones()}
+/* حذف الدروس/الوحدات المدمجة يتم عبر "شواهد قبر" (_del) تُخزن في المحتوى المخصص وتُطبق بعد الدمج */
+function applyTombstones(){
+  const dels=[LOCAL&&LOCAL._del,FILE&&FILE._del].filter(Boolean);if(!dels.length)return;
+  for(const g in CONTENT){
+    if(g.charAt(0)==='_'){delete CONTENT[g];continue}
+    const uDel=new Set(),lDel=new Set();
+    dels.forEach(d=>{(d.units||[]).forEach(k=>{if(k.indexOf(g+':')===0)uDel.add(k.slice(g.length+1))});(d.lessons||[]).forEach(k=>{if(k.indexOf(g+':')===0)lDel.add(k.slice(g.length+1))})});
+    if(uDel.size)CONTENT[g].units=CONTENT[g].units.filter(u=>!uDel.has(norm(u.en)));
+    if(lDel.size)CONTENT[g].units.forEach(u=>{u.lessons=u.lessons.filter(l=>!lDel.has(norm(u.en)+'/'+norm(l.en)))});
+  }
+}
+const findUnit=(g,uKey)=>((CONTENT[g]||{units:[]}).units||[]).find(x=>norm(x.en)===uKey);
+const findLesson=(g,uKey,lKey)=>{const u=findUnit(g,uKey);return{u,l:u?u.lessons.find(x=>norm(x.en)===lKey):null}};
+const lessonIsLocal=(g,uKey,lKey)=>{const t=(LOCAL[g]||{units:[]}).units.find(x=>norm(x.en)===uKey);return!!(t&&t.lessons.some(x=>norm(x.en)===lKey))};
+function lessonTombstone(g,uKey,lKey){LOCAL._del=LOCAL._del||{units:[],lessons:[]};const k=g+':'+uKey+'/'+lKey;if(LOCAL._del.lessons.indexOf(k)<0)LOCAL._del.lessons.push(k)}
+function unitTombstone(g,uKey){LOCAL._del=LOCAL._del||{units:[],lessons:[]};const k=g+':'+uKey;if(LOCAL._del.units.indexOf(k)<0)LOCAL._del.units.push(k)}
+function persistLesson(g,uEn,uAr,lesson,oldKey){
+  LOCAL[g]=LOCAL[g]||{units:[]};
+  let t=LOCAL[g].units.find(x=>norm(x.en)===norm(uEn));
+  if(!t){t={en:uEn,ar:uAr,lessons:[]};LOCAL[g].units.push(t)}
+  const i=oldKey?t.lessons.findIndex(x=>norm(x.en)===oldKey):-1;
+  if(i>=0)t.lessons[i]=lesson;else t.lessons.push(lesson);
+  if(oldKey&&norm(lesson.en)!==oldKey)lessonTombstone(g,norm(uEn),oldKey);
+}
+function saveExam(){
+  const m=$('#xErr');m.textContent='';
+  const raw=($('#xJson').value||'').trim();if(!raw){m.textContent='الصق كود الامتحان أولًا.';return}
+  let x;try{x=JSON.parse(raw)}catch(e){m.textContent='صيغة JSON غير صحيحة: '+e.message;return}
+  const miss=EXAM_KEYS.filter(k=>!(k in x));if(miss.length){m.textContent='ينقص الاختبار: '+miss.join('، ');return}
+  const f=findLesson(EDIT_EXAM.g,EDIT_EXAM.u,EDIT_EXAM.l);if(!f.l){m.textContent='الدرس غير موجود.';return}
+  if(lessonIsLocal(EDIT_EXAM.g,EDIT_EXAM.u,EDIT_EXAM.l)){f.l.exam=x}
+  else{const copy=JSON.parse(JSON.stringify(f.l));copy.exam=x;persistLesson(EDIT_EXAM.g,f.u.en,f.u.ar||'',copy,EDIT_EXAM.l)}
+  store.set('ne.custom',LOCAL);rebuild();EDIT_EXAM=null;toast('تم حفظ الامتحان');render();
+}
+function deleteExam(g,uKey,lKey){
+  const f=findLesson(g,uKey,lKey);if(!f.l||!f.l.exam)return;
+  if(lessonIsLocal(g,uKey,lKey)){delete f.l.exam}
+  else{const copy=JSON.parse(JSON.stringify(f.l));delete copy.exam;persistLesson(g,f.u.en,f.u.ar||'',copy,lKey)}
+  store.set('ne.custom',LOCAL);rebuild();EDIT_EXAM=null;toast('تم حذف الامتحان');render();
+}
+function fullDeleteLesson(g,uKey,lKey){
+  const f=findLesson(g,uKey,lKey);if(!f.l)return;
+  if(!confirm('حذف الدرس "'+f.l.en+'" نهائيًا من هذا الجهاز؟'))return;
+  const t=(LOCAL[g]||{units:[]}).units.find(x=>norm(x.en)===uKey);
+  if(t){const i=t.lessons.findIndex(x=>norm(x.en)===lKey);if(i>=0)t.lessons.splice(i,1);if(!t.lessons.length){const ui=LOCAL[g].units.indexOf(t);if(ui>=0)LOCAL[g].units.splice(ui,1)}}
+  if(LOCAL[g]&&!LOCAL[g].units.length)delete LOCAL[g];
+  lessonTombstone(g,uKey,lKey);store.set('ne.custom',LOCAL);rebuild();toast('تم حذف الدرس');render();
+}
+function renameUnit(g,uKey){
+  const u=findUnit(g,uKey);if(!u)return;
+  const n=prompt('الاسم الجديد للوحدة (بالإنجليزية):',u.en);if(!n||norm(n)===uKey)return;
+  const copy=JSON.parse(JSON.stringify(u));copy.en=n.trim();
+  LOCAL[g]=LOCAL[g]||{units:[]};LOCAL[g].units.push(copy);
+  unitTombstone(g,uKey);store.set('ne.custom',LOCAL);rebuild();toast('تم تعديل اسم الوحدة');render();
+}
+function deleteUnit(g,uKey){
+  const u=findUnit(g,uKey);if(!u)return;
+  if(!confirm('حذف الوحدة "'+u.en+'" وكل دروسها ('+u.lessons.length+' درسًا)؟'))return;
+  const ti=(LOCAL[g]||{units:[]}).units.findIndex(x=>norm(x.en)===uKey);if(ti>=0)LOCAL[g].units.splice(ti,1);
+  if(LOCAL[g]&&!LOCAL[g].units.length)delete LOCAL[g];
+  unitTombstone(g,uKey);store.set('ne.custom',LOCAL);rebuild();toast('تم حذف الوحدة');render();
+}
+function importAI(){
+  const m=$('#aiErr');m.textContent='';
+  const raw=($('#aiIn').value||'').trim();if(!raw){m.textContent='الصق الكود أولًا.';return}
+  let d;try{d=JSON.parse(raw)}catch(e){m.textContent='صيغة JSON غير صحيحة: '+e.message;return}
+  if(!d||typeof d!=='object'||Array.isArray(d)){m.textContent='يجب أن يكون الكود كائن JSON.';return}
+  if(d.en&&d.vocab){const g0=(document.getElementById('fGrade')||{}).value||'pp1';d={[g0]:{units:[{en:d.unit||'General',ar:d.unitAr||'',lessons:[d]}]}}}
+  let count=0;
+  for(const g in d){
+    if(g.charAt(0)==='_')continue;
+    if(!STAGES.some(s=>s.grades.some(x=>x[0]===g))){m.textContent='معرّف صف غير معروف: '+g;return}
+    const units=d[g].units||[];
+    if(!Array.isArray(units)||!units.length){m.textContent='لا توجد وحدات في الصف '+g;return}
+    for(const u of units){
+      if(!u.en||!Array.isArray(u.lessons)||!u.lessons.length){m.textContent='وحدة بدون اسم أو بدون دروس: '+(u.en||'؟');return}
+      for(const l of u.lessons){
+        if(!l.en||!Array.isArray(l.vocab)||l.vocab.length<4){m.textContent='درس ناقص (اسم إنجليزي + 4 مفردات على الأقل): '+(l.en||'؟');return}
+        if(l.exam){const miss=EXAM_KEYS.filter(k=>!(k in l.exam));if(miss.length){m.textContent='اختبار الدرس "'+l.en+'" ينقصه: '+miss.join('، ');return}}
+        count++;
+      }
+    }
+  }
+  LOCAL=mergeContent(LOCAL,d);store.set('ne.custom',LOCAL);rebuild();toast('تم استيراد '+count+' درسًا بنجاح');render();
+}
+const exportText=()=>{const o=mergeContent(FILE,LOCAL);
+  const d={units:[...((FILE._del&&FILE._del.units)||[]),...((LOCAL._del&&LOCAL._del.units)||[])],
+           lessons:[...((FILE._del&&FILE._del.lessons)||[]),...((LOCAL._del&&LOCAL._del.lessons)||[])]};
+  if(d.units.length||d.lessons.length)o._del=d;
+  return JSON.stringify(o,null,1)};
+const ICONS={
+ menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',
+ home:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+ layers:'<path d="M12 2l10 5-10 5L2 7z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/>',
+ moon:'<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
+ sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+ vol:'<path d="M11 5L6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/>',
+ stop:'<rect x="6" y="6" width="12" height="12" rx="2"/>',
+ play:'<path d="M7 4l13 8-13 8z"/>',
+ book:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/>',
+ head:'<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/>',
+ game:'<path d="M6 12h4M8 10v4M15 13h.01M18 11h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-3.9 3.1l-1.5 6.6A3 3 0 0 0 6.2 18l1.5-1.5h8.6l1.5 1.5a3 3 0 0 0 4.9-3.3l-1.5-6.6A4 4 0 0 0 17.3 5z"/>',
+ check:'<path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/>',
+ clip:'<path d="M9 4h6v3H9z"/><path d="M7 5H5v16h14V5h-2"/><path d="M9 12h6M9 16h4"/>',
+ chart:'<path d="M3 3v18h18"/><path d="M7 15v3M12 9v9M17 5v13"/>',
+ chev:'<path d="M6 9l6 6 6-6"/>',
+ left:'<path d="M15 18l-6-6 6-6"/>',
+ panel:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/>',
+ plus:'<path d="M12 5v14M5 12h14"/>',
+ lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+ trash:'<path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6"/>',
+ down:'<path d="M12 3v12M7 10l5 5 5-5M4 21h16"/>',
+ copy:'<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>',
+ redo:'<path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>'
+};
+const ic=(n,s=20)=>`<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>`;
+const spk=(t,sm)=>`<button class="spk${sm?' sm':''}" data-act="say" data-t="${esc(t)}" aria-label="استمع إلى النطق">${ic('vol',sm?17:21)}</button>`;
+
+/* ============ النطق ============ */
+const TTS={voice:null,rate:.9,token:0,ok:'speechSynthesis' in window,voiceName:store.get('ne.voice',null)};
+function pickVoice(){if(!TTS.ok)return;const v=speechSynthesis.getVoices();
+ TTS.voice=(TTS.voiceName&&v.find(x=>x.name===TTS.voiceName))||v.find(x=>/^en[-_]GB/i.test(x.lang))||v.find(x=>/^en[-_]US/i.test(x.lang))||v.find(x=>/^en/i.test(x.lang))||null}
+if(TTS.ok){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
+function stopAll(){TTS.token++;if(TTS.ok)speechSynthesis.cancel();document.querySelectorAll('.sent.on,.vrow.hl,.spk.on').forEach(e=>e.classList.remove('on','hl'))}
+function utter(text,rate){const u=new SpeechSynthesisUtterance(text);u.lang='en-US';if(TTS.voice)u.voice=TTS.voice;u.rate=rate||TTS.rate;return u}
+function say(text,rate,btn){
+  if(!TTS.ok){toast('المتصفح لا يدعم النطق الصوتي');return}
+  stopAll();const u=utter(text,rate);
+  if(btn){btn.classList.add('on');u.onend=u.onerror=()=>btn.classList.remove('on')}
+  speechSynthesis.speak(u)
+}
+function playSeq(items,onItem,onDone,rate){
+  if(!TTS.ok){toast('المتصفح لا يدعم النطق الصوتي');return}
+  stopAll();const t=TTS.token;let i=0;
+  const next=()=>{if(t!==TTS.token)return;if(i>=items.length){onDone&&onDone();return}
+    const k=i++;onItem(k);const u=utter(items[k],rate);u.onend=next;u.onerror=next;speechSynthesis.speak(u)};
+  next()
+}
+function toast(m){const d=document.createElement('div');d.className='toast';d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),2600)}
+
+/* ============ الحالة ============ */
+const S={view:'home',stage:null,grade:null,u:0,l:0,tab:'vocab'};
+const UI={side:'open',grp:true};
+/* وضع المعلم: بوابة رمز دخول تُخفي أدوات التحكم عن الطلاب. تنبيه أمانة:
+   هذا حماية بسيطة على المتصفح فقط، وليست حماية خادم حقيقية. */
+const TEACHER={on:sessionStorage.getItem('ne.teacher')==='1'};
+function closeGate(){const g=$('.gate');if(g)g.remove()}
+function openGate(){
+  closeGate();
+  const has=!!localStorage.getItem('ne.teacherpin');
+  const div=document.createElement('div');div.className='gate';
+  div.innerHTML=has?
+    `<div class="card"><h3>دخول المعلم</h3><p class="muted">أدخل رمز المعلم لفتح لوحة التحكم.</p>
+     <input type="password" inputmode="numeric" id="gPin" placeholder="الرمز" autocomplete="off">
+     <div class="err" id="gErr"></div>
+     <div class="row"><button class="btn primary" data-g="ok">دخول</button><button class="btn" data-g="cancel">إلغاء</button></div></div>`
+    :`<div class="card"><h3>إعداد رمز المعلم</h3><p class="muted">هذه أول مرة على هذا الجهاز. اختر رمزًا لن يعرفه الطلاب (4 أحرف على الأقل).</p>
+     <input type="password" inputmode="numeric" id="gPin" placeholder="اختر رمزًا" autocomplete="off">
+     <input type="password" inputmode="numeric" id="gPin2" placeholder="أعد كتابة الرمز" autocomplete="off">
+     <div class="err" id="gErr"></div>
+     <div class="row"><button class="btn primary" data-g="set">حفظ ودخول</button><button class="btn" data-g="cancel">إلغاء</button></div></div>`;
+  document.body.appendChild(div);
+  $('#gPin').focus();
+  const err=m=>{$('#gErr').textContent=m};
+  div.onclick=e=>{
+    if(e.target===div){closeGate();return}
+    const g=e.target.closest('[data-g]');if(!g)return;
+    if(g.dataset.g==='cancel'){closeGate();return}
+    if(g.dataset.g==='set'){
+      const p1=$('#gPin').value,p2=$('#gPin2').value;
+      if(p1.length<4)return err('الرمز 4 أحرف على الأقل.');
+      if(p1!==p2)return err('الرمزان غير متطابقين.');
+      localStorage.setItem('ne.teacherpin',p1);unlockTeacher();return;
+    }
+    if(g.dataset.g==='ok'){
+      const p=$('#gPin').value;
+      if(p!==localStorage.getItem('ne.teacherpin'))return err('الرمز غير صحيح.');
+      unlockTeacher();return;
+    }
+  };
+  div.onkeydown=e=>{if(e.key==='Enter'){const btn=div.querySelector('[data-g="ok"],[data-g="set"]');btn&&btn.click()}if(e.key==='Escape')closeGate()};
+}
+function unlockTeacher(){TEACHER.on=true;sessionStorage.setItem('ne.teacher','1');closeGate();toast('تم فتح لوحة المعلم');go({view:'add'})}
+function lockTeacher(){TEACHER.on=false;sessionStorage.removeItem('ne.teacher');EDIT=null;EDIT_EXAM=null;go({view:'home'})}
+let PROG=store.get('ne.progress',{});
+const pkey=()=>`${S.grade}.${S.u}.${S.l}`;
+function saveProg(field,val,key){key=key||pkey();const p=PROG[key]||(PROG[key]={});if(field==='games')p.games=(p.games||0)+1;else p[field]=Math.max(p[field]||0,val);store.set('ne.progress',PROG)}
+const stageOf=g=>STAGES.find(s=>s.grades.some(x=>x[0]===g));
+const gradeName=g=>{const s=stageOf(g);return s?s.grades.find(x=>x[0]===g)[1]:''};
+const curLesson=()=>CONTENT[S.grade].units[S.u].lessons[S.l];
+const lessonPct=k=>{const p=PROG[k]||{};let n=0;if(p.vocab)n++;if(p.listen)n++;if(p.games)n++;if(p.recite)n++;if(p.exam)n++;return n*20};
+function go(patch){stopAll();Object.assign(S,patch);render();window.scrollTo({top:0})}
+
+/* ============ الوضع الليلي والقائمة ============ */
+function applyTheme(t){document.documentElement.setAttribute('data-theme',t);store.set('ne.theme',t);renderTop()}
+function currentTheme(){const a=document.documentElement.getAttribute('data-theme');if(a)return a;return matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}
+const mobile=()=>matchMedia('(max-width:900px)').matches;
+function toggleSide(){const app=$('#app');if(mobile()){app.classList.toggle('mobile-open')}else{UI.side=UI.side==='open'?'collapsed':'open';app.dataset.side=UI.side;store.set('ne.side',UI.side)}}
+
+/* ============ الشريط الجانبي والعلوي ============ */
+function navBtn(act,label,icon,cur,extra=''){return `<button class="nav" data-act="${act}" ${extra} ${cur?'aria-current="page"':''} title="${label}">${ic(icon)}<span class="lbl">${label}</span></button>`}
+function renderSide(){
+  const inLesson=S.view==='lesson';
+  let h=navBtn('home','الرئيسية','home',S.view==='home');
+  h+=`<button class="nav" data-act="grp" aria-expanded="${UI.grp}" title="المراحل الدراسية">${ic('layers')}<span class="lbl">المراحل الدراسية</span>${ic('chev',16).replace('class="ic"','class="ic chev"')}</button>`;
+  h+=`<div class="g-body" ${UI.grp?'':'hidden'}>${STAGES.map(s=>`<button class="nav" data-act="stage" data-stage="${s.id}" ${S.stage===s.id&&S.view!=='home'?'aria-current="page"':''}><span class="dot" style="background:${s.id==='primary'?'var(--gold)':'#38C1CC'}"></span><span class="lbl">${s.short}</span></button>`).join('')}</div>`;
+  if(inLesson){
+    const L=curLesson();
+    h+=`<p class="side-title">الدرس الحالي<span class="en">${esc(L.en)}</span></p>`;
+    h+=TABS.map(t=>navBtn('tab',t[1],t[2],S.tab===t[0],`data-tab="${t[0]}"`)).join('');
+  }
+  if(TEACHER.on)h+=navBtn('addLesson','لوحة المعلم','plus',S.view==='add');
+  h+=navBtn('settings','الصوت والإعدادات','vol',S.view==='settings');
+  h+=navBtn('progress','تقدّمي','chart',S.view==='progress');
+  $('#nav').innerHTML=h;
+  const dark=currentTheme()==='dark';
+  $('#foot').innerHTML=
+    `<button class="nav" data-act="theme" title="الوضع الليلي">${ic(dark?'sun':'moon')}<span class="lbl">${dark?'الوضع النهاري':'الوضع الليلي'}</span></button>`+
+    `<button class="nav" data-act="toggleSide" title="طي القائمة">${ic('panel')}<span class="lbl">طي القائمة</span></button>`+
+    `<div class="tfoot"><button class="tbtn" data-act="teacherGate" aria-label="لوحة المعلم" title="لوحة المعلم">${ic(TEACHER.on?'lock':'lock',16)}</button></div>`;
+}
+function renderTop(){
+  $('#menuBtn').innerHTML=ic('menu',22);
+  $('#themeBtn').innerHTML=ic(currentTheme()==='dark'?'sun':'moon',22);
+  const c=[];const home=`<button data-act="home">الرئيسية</button>`;
+  if(S.view==='home')c.push(`<b>الرئيسية</b>`);
+  else{c.push(home);
+    if(S.view==='progress'||S.view==='add'||S.view==='settings')c.push(`<b>${S.view==='add'?'لوحة المعلم':S.view==='settings'?'الصوت والإعدادات':'تقدّمي'}</b>`);
+    if(S.stage&&S.view!=='progress'&&S.view!=='add'){const s=STAGES.find(x=>x.id===S.stage);c.push(S.view==='stage'?`<b>${s.short}</b>`:`<button data-act="stage" data-stage="${s.id}">${s.short}</button>`)}
+    if(S.grade&&(S.view==='grade'||S.view==='lesson')){c.push(S.view==='grade'?`<b>${gradeName(S.grade)}</b>`:`<button data-act="grade" data-grade="${S.grade}">${gradeName(S.grade)}</button>`)}
+    if(S.view==='lesson')c.push(`<b class="en">${esc(curLesson().en)}</b>`)}
+  $('#crumbs').innerHTML=c.join(`<span aria-hidden="true">/</span>`);
+}
+
+/* ============ الصفحات ============ */
+const TABS=[['video','شرح الدرس','play'],['vocab','المفردات','book'],['listen','الاستماع','head'],['games','الألعاب','game'],['recite','التسميع','check'],['exam','الاختبار الشامل','clip']];
+
+function viewHome(){
+  const steps=[['شرح الدرس','فيديو وملخص مكتوب','play'],['المفردات','نطق كل كلمة بضغطة','book'],['الاستماع','النص كاملًا مع تظليل الجملة','head'],['الألعاب','ثلاث ألعاب لكل درس','game'],['التسميع','اكتب الكلمة من معناها','check'],['الاختبار الشامل','سبعة أسئلة بنمط الامتحان','clip']];
+  return `<section class="hero">
+    <div>
+      <h1>تعلّم الإنجليزية درسًا بعد درس، بالنطق والتدريب والاختبار</h1>
+      <p class="lead">منهج اللغة الإنجليزية في التعليم المصري من الابتدائي حتى الإعدادي. كل صف فيه وحدات، وكل وحدة فيها دروس، وكل درس يمرّ بست محطات.</p>
+      <div class="row"><button class="btn primary" data-act="open" data-grade="pp1" data-u="0" data-l="0">${ic('play',18)} ابدأ الدرس التجريبي</button>
+      <button class="btn" data-act="stage" data-stage="prep">تصفّح المراحل</button></div>
+    </div>
+    <aside class="path" aria-label="رحلة الدرس"><h3>رحلة كل درس</h3><ol>
+      ${steps.map(s=>`<li><span class="node">${ic(s[2],20)}</span><div><b>${s[0]}</b><div class="muted" style="font-size:14px;line-height:1.4">${s[1]}</div></div></li>`).join('')}
+    </ol></aside>
+  </section>
+  <section class="stages">${STAGES.map(s=>`<div class="stage ${s.cls}"><h2>${s.ar}</h2><p class="muted" style="margin:0">${s.desc}</p>
+     <div class="chips">${s.grades.map(g=>`<button class="chip ${CONTENT[g[0]]?'live':''}" data-act="grade" data-grade="${g[0]}">${g[1].replace('الصف ','')}</button>`).join('')}</div></div>`).join('')}</section>
+  <p class="note">المحتوى الحالي تجريبي: الصف الأول الإعدادي، الوحدة الأولى، بدرسين كاملين. باقي الصفوف جاهزة بالهيكل نفسه وتنتظر إضافة المنهج. لوحة المعلم (أيقونة القفل أسفل القائمة الجانبية) تتيح إضافة وتعديل وحذف الدروس والوحدات والامتحانات، ولصق أكواد جاهزة من مولدات الذكاء الاصطناعي.</p>`;
+}
+function viewStage(){
+  const s=STAGES.find(x=>x.id===S.stage);
+  return `<div class="${s.cls}"><h1>${s.ar}</h1><p class="muted">${s.desc}. اختر الصف لعرض وحداته.</p>
+   <div class="grid">${s.grades.map(g=>{const c=CONTENT[g[0]];return `<button class="gcard ${c?'':'soon'}" data-act="grade" data-grade="${g[0]}"><h3 style="margin:0">${g[1]}</h3><small>${c?c.units.length+' وحدة متاحة':'المحتوى قريبًا'}</small></button>`}).join('')}</div></div>`;
+}
+function viewGrade(){
+  const s=stageOf(S.grade),c=CONTENT[S.grade];
+  let h=`<div class="${s.cls}"><h1>${gradeName(S.grade)}</h1>`;
+  if(!c)return h+`<div class="empty"><h3>لم يُضف منهج هذا الصف بعد</h3><p>الهيكل جاهز: أضف وحداته ودروسه إلى كائن CONTENT بنفس بنية الصف الأول الإعدادي، وسيظهر هنا تلقائيًا.</p></div></div>`;
+  h+=`<p class="muted">اختر الدرس لتبدأ.</p>`;
+  c.units.forEach((u,ui)=>{
+    h+=`<div class="unit"><div class="unit-h"><span class="unit-n">${ui+1}</span><div><h2 class="en" style="margin:0">Unit ${ui+1}: ${esc(u.en)}</h2><span class="muted">${esc(u.ar||'')}</span></div></div>`;
+    u.lessons.forEach((l,li)=>{const p=lessonPct(`${S.grade}.${ui}.${li}`);
+      h+=`<button class="lrow" data-act="open" data-grade="${S.grade}" data-u="${ui}" data-l="${li}">${ic('book',20)}<span><b class="en">${esc(l.en)}</b> <span class="muted">— ${esc(l.ar||'')}</span></span><span class="bar" title="${p}%"><i style="width:${p}%"></i></span></button>`});
+    h+=`</div>`});
+  return h+`</div>`;
+}
+function viewLesson(){
+  const s=stageOf(S.grade),L=curLesson(),u=CONTENT[S.grade].units[S.u];
+  return `<div class="${s.cls}"><header class="lhead"><p class="en">Unit ${S.u+1}: ${esc(u.en)} · Lesson ${S.l+1}</p><h1 class="en">${esc(L.en)}</h1><p>${esc(L.ar||'')}</p></header>
+   <div class="tabs" role="tablist">${TABS.map(t=>`<button class="tab" role="tab" aria-selected="${S.tab===t[0]}" data-act="tab" data-tab="${t[0]}">${ic(t[2],18)}${t[1]}</button>`).join('')}</div>
+   <div id="panel"></div></div>`;
+}
+function viewAdd(){
+  if(EDIT_EXAM){
+    const f=findLesson(EDIT_EXAM.g,EDIT_EXAM.u,EDIT_EXAM.l);
+    if(!f.l){EDIT_EXAM=null;return viewAdd()}
+    return `<h1>${f.l.exam?'تعديل الامتحان':'إضافة امتحان'}</h1>
+    <div class="tbadge"><span>${ic('lock',16)} وضع المعلم — هذا القسم غير ظاهر للطلاب</span><button class="btn sm" data-act="lockTeacher">خروج</button></div>
+    <p class="muted">${esc(gradeName(EDIT_EXAM.g))} · <span class="en">Unit: ${esc(f.u.en)}</span> · درس <span class="en">${esc(f.l.en)}</span></p>
+    <div class="card form">
+      <label for="xJson">كود الامتحان (JSON) <small>الصق هنا كود الامتحان من مولد الذكاء الاصطناعي أو عدّله يدويًا</small></label>
+      <textarea class="ta en f" id="xJson" rows="18" dir="ltr" placeholder='{"conv":[...],"cloze":{...},"read":{...},"mcq":[...],"rewrite":[...],"fix":[...],"para":{...}}'>${f.l.exam?esc(JSON.stringify(f.l.exam,null,1)):''}</textarea>
+      <div class="err" id="xErr" role="alert"></div>
+      <div class="row">
+        <button class="btn primary" data-act="saveExam">${ic('check',18)} حفظ الامتحان</button>
+        ${f.l.exam?`<button class="btn" data-act="delExam" data-g="${EDIT_EXAM.g}" data-u="${EDIT_EXAM.u}" data-l="${EDIT_EXAM.l}">${ic('trash',16)} حذف الامتحان</button>`:''}
+        <button class="btn" data-act="cancelExam">إلغاء</button>
+      </div>
+      <p class="muted" style="margin-top:10px">الأقسام السبعة المطلوبة: <code class="en">conv</code> · <code class="en">cloze</code> · <code class="en">read</code> · <code class="en">mcq</code> · <code class="en">rewrite</code> · <code class="en">fix</code> · <code class="en">para</code></p>
+    </div>`;
+  }
+  const opts=STAGES.map(s=>`<optgroup label="${s.ar}">${s.grades.map(g=>`<option value="${g[0]}" ${g[0]==='pp1'?'selected':''}>${g[1]}</option>`).join('')}</optgroup>`).join('');
+  const ed=EDIT?findLesson(EDIT.g,EDIT.u,EDIT.l):null;
+  const L=ed?ed.l:null;
+  if(EDIT&&!L)EDIT=null;
+  const gv=(k,fb)=>esc(L?(L[k]!==undefined?L[k]:(fb||'')):(fb||''));
+  const vocabTxt=L?L.vocab.map(v=>v.w+' | '+v.ar+(v.ex?' | '+v.ex:'')).join('\n'):'';
+  const hasLocal=Object.keys(LOCAL).some(k=>k.charAt(0)!=='_'&&LOCAL[k].units&&LOCAL[k].units.length)||!!(LOCAL._del&&((LOCAL._del.units||[]).length||(LOCAL._del.lessons||[]).length));
+  const examTxt=L&&L.exam?JSON.stringify(L.exam,null,1):'';
+  let rows='';
+  STAGES.forEach(s=>s.grades.forEach(([gid])=>{const c=CONTENT[gid];if(!c)return;
+    c.units.forEach(u=>{const uk=norm(u.en);
+      rows+=`<div class="lrow" style="cursor:default;background:var(--surface2)"><span style="display:flex;gap:10px;align-items:center">${ic('layers',18)}<span><b class="en">Unit: ${esc(u.en)}</b> <span class="muted">${esc(u.ar||'')} · ${u.lessons.length} درسًا · ${gradeName(gid)}</span></span></span>
+        <span style="margin-inline-start:auto" class="row"><button class="btn sm" data-act="renameUnit" data-g="${gid}" data-u="${uk}">تعديل الاسم</button><button class="btn sm" data-act="delUnit" data-g="${gid}" data-u="${uk}">${ic('trash',16)} حذف الوحدة</button></span></div>`;
+      u.lessons.forEach(l=>{const lk=norm(l.en);
+        rows+=`<div class="lrow" style="cursor:default"><span style="display:flex;gap:10px;align-items:center">${ic('book',18)}<span><b class="en">${esc(l.en)}</b> <span class="muted">— ${esc(l.ar||'')}</span><br><span class="muted" style="font-size:13px">${l.video?'✓ فيديو · ':''}${l.listen?'✓ استماع · ':''}${l.exam?'✓ اختبار':'بدون اختبار'}</span></span></span>
+        <span style="margin-inline-start:auto" class="row">
+          <button class="btn sm" data-act="editLesson" data-g="${gid}" data-u="${uk}" data-l="${lk}">تعديل الدرس</button>
+          <button class="btn sm" data-act="editExam" data-g="${gid}" data-u="${uk}" data-l="${lk}">${l.exam?'تعديل الامتحان':'إضافة امتحان'}</button>
+          <button class="btn sm" data-act="delLesson" data-g="${gid}" data-u="${uk}" data-l="${lk}">${ic('trash',16)} حذف</button>
+        </span></div>`})})}));
+  return `<h1>لوحة المعلم</h1>
+  <div class="tbadge"><span>${ic('lock',16)} أنت في وضع المعلم — هذا القسم غير ظاهر للطلاب</span><button class="btn sm" data-act="lockTeacher">خروج</button></div>
+  ${hasLocal?`<p class="note" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><span>⚠️ عندك تعديلات على هذا الجهاز لم تُنشر بعد — الطلاب مش هيشوفوها إلا لما تنزّل content.json وترفعه جنب index.html على GitHub</span><button class="btn sm gold" data-act="dl">تنزيل content.json</button></p>`:''}
+  <p class="muted">أضف درسًا أو عدّله أو احذفه، وأضف الامتحانات وعدّلها واحذفها — يدويًا أو بلصق كود جاهز من مولد ذكاء اصطناعي.</p>
+  <div class="card form">
+    <h2>${L?'تعديل الدرس':'إضافة درس جديد'}</h2>
+    ${L?`<p class="muted">الصف: ${esc(gradeName(EDIT.g))} · الوحدة: <span class="en">${esc(EDIT.u)}</span></p>`:''}
+    ${L?'':`<label for="fGrade">الصف</label><select class="f" id="fGrade">${opts}</select>
+    <label for="fUnit">الوحدة</label><select class="f" id="fUnit"></select>
+    <div class="g2" id="fNew" hidden><div><label for="fUE">اسم الوحدة بالإنجليزية</label><input class="tin en f" id="fUE" type="text"></div><div><label for="fUA">اسم الوحدة بالعربية</label><input class="tin f" id="fUA" type="text"></div></div>`}
+    <div class="g2"><div><label for="fLE">اسم الدرس بالإنجليزية *</label><input class="tin en f" id="fLE" type="text" value="${gv('en')}"></div><div><label for="fLA">اسم الدرس بالعربية</label><input class="tin f" id="fLA" type="text" value="${gv('ar')}"></div></div>
+    <label for="fVocab">المفردات * <small>سطر لكل كلمة: الكلمة | المعنى | جملة مثال (اختياري). أربع كلمات على الأقل.</small></label>
+    <textarea class="ta en f" id="fVocab" rows="8" placeholder="mother | أم | My mother cooks dinner.">${esc(vocabTxt)}</textarea>
+    <div class="g2"><div><label for="fLT">عنوان نص الاستماع</label><input class="tin en f" id="fLT" type="text" value="${L&&L.listen?esc(L.listen.title):''}"></div><div><label for="fVid">رابط فيديو الشرح <small>(يوتيوب / Vimeo / mp4)</small></label><input class="tin en f" id="fVid" type="text" placeholder="https://" value="${gv('video')}"></div></div>
+    <label for="fLX">نص الاستماع كاملًا</label><textarea class="ta en f" id="fLX" rows="6">${L&&L.listen?esc(L.listen.text):''}</textarea>
+    <label for="fNotes">ملخص الشرح المكتوب <small>(اختياري)</small></label><textarea class="ta f" id="fNotes" rows="3">${gv('notes')}</textarea>
+    <label for="fExam">الاختبار الشامل <small>(اختياري، JSON — الأقسام السبعة)</small></label><textarea class="ta en f" id="fExam" rows="4" dir="ltr" placeholder='{"conv":[...],"cloze":{...},"read":{...},"mcq":[...],"rewrite":[...],"fix":[...],"para":{...}}'>${esc(examTxt)}</textarea>
+    <div class="err" id="fErr" role="alert"></div>
+    <div class="row"><button class="btn primary" data-act="saveLesson">${ic(L?'check':'plus',18)} ${L?'حفظ التعديلات':'حفظ الدرس'}</button>${L?`<button class="btn" data-act="cancelEdit">إلغاء التعديل</button>`:''}</div>
+  </div>
+  <div class="card" style="margin-top:16px"><h2>إدارة المحتوى — الوحدات والدروس والامتحانات</h2>${rows||'<p class="muted">لا يوجد محتوى بعد.</p>'}</div>
+  <div class="card form" style="margin-top:16px"><h2>استيراد كود من مولد ذكاء اصطناعي</h2>
+    <p class="muted">اطلب من المولّد إخراج درس أو وحدة كاملة بصيغة JSON بنفس بنية المنصة، ثم الصق الكود هنا وسيتحقق النظام منه ويستورده تلقائيًا. يقبل ثلاثة أشكال: كائن كامل <code class="en">{"pp1":{"units":[...]}}</code>، أو <code class="en">{"units":[...]}</code> يُضاف للصف المحدد في النموذج أعلاه، أو درس واحد <code class="en">{"en":"...","vocab":[...]}</code>.</p>
+    <label for="aiIn">الكود (JSON)</label>
+    <textarea class="ta en f" id="aiIn" rows="8" dir="ltr" placeholder='{"pp1":{"units":[{"en":"...","ar":"...","lessons":[{...}]}]}}'></textarea>
+    <div class="err" id="aiErr" role="alert"></div>
+    <button class="btn primary" data-act="importAI">${ic('down',18)} استيراد وتحقق</button>
+  </div>
+  <div class="card form" style="margin-top:16px"><h2>التصدير والنشر للطلاب</h2>
+    <p class="muted">كل التعديلات تُحفظ على هذا الجهاز فقط. لتظهر للطلاب: نزّل الملف، وسمّه <code>content.json</code>، وارفعه على GitHub في نفس مجلد <code>index.html</code>. يشمل الملف الدروس المضافة والمعدّلة والمحذوفة.</p>
+    <div class="row"><button class="btn primary" data-act="dl">${ic('down',18)} تنزيل content.json</button><button class="btn" data-act="cp">${ic('copy',18)} نسخ المحتوى</button></div>
+    <label for="fOut">المحتوى الكامل <small>(انسخه إن لم يبدأ التنزيل)</small></label><textarea class="ta en f" id="fOut" rows="5" dir="ltr" readonly>${esc(exportText())}</textarea>
+    <label for="fImport">استيراد ملف محتوى <small>(لنقل دروسك من جهاز إلى آخر)</small></label><input type="file" id="fImport" accept=".json,application/json">
+  </div>`;
+}
+function fillUnits(){const g=$('#fGrade').value,us=(CONTENT[g]||{units:[]}).units;
+  $('#fUnit').innerHTML=us.map((u,i)=>`<option value="${i}">Unit ${i+1}: ${esc(u.en)}</option>`).join('')+`<option value="__new">+ وحدة جديدة</option>`;$('#fNew').hidden=$('#fUnit').value!=='__new'}
+const EXAM_KEYS=['conv','cloze','read','mcq','rewrite','fix','para'];
+function saveLesson(){
+  const v=id=>{const el=$('#'+id);return el?(el.value||'').trim():''},err=m=>{const e=$('#fErr');e.textContent=m;e.scrollIntoView({block:'center',behavior:'smooth'})};
+  let g,uEn,uAr='';
+  if(EDIT){
+    g=EDIT.g;const u=CONTENT[g].units.find(x=>norm(x.en)===EDIT.u);uEn=u.en;uAr=u.ar||'';
+  }else{
+    g=v('fGrade');
+    if($('#fUnit').value==='__new'){uEn=v('fUE');uAr=v('fUA');if(!uEn)return err('اكتب اسم الوحدة بالإنجليزية.')}
+    else{const u=CONTENT[g].units[+$('#fUnit').value];uEn=u.en;uAr=u.ar||''}
+  }
+  const lEn=v('fLE');if(!lEn)return err('اكتب اسم الدرس بالإنجليزية.');
+  const vocab=v('fVocab').split('\n').map(r=>r.split(/\||\t/).map(x=>x.trim())).filter(a=>a[0]&&a[1]).map(a=>({w:a[0],ar:a[1],ex:a[2]||''}));
+  if(vocab.length<4)return err('أدخل أربع كلمات على الأقل بالشكل: الكلمة | المعنى | المثال.');
+  const lesson={en:lEn,ar:v('fLA'),vocab};
+  if(v('fLX')){if(!/[.!?]/.test(v('fLX')))return err('نص الاستماع يجب أن يحتوي على جمل تنتهي بنقطة أو علامة استفهام.');lesson.listen={title:v('fLT')||lEn,text:v('fLX')}}
+  if(v('fVid'))lesson.video=v('fVid');
+  if(v('fNotes'))lesson.notes=v('fNotes');
+  if(v('fExam')){let x;try{x=JSON.parse(v('fExam'))}catch(e){return err('صيغة الاختبار غير صحيحة (JSON): '+e.message)}
+    const miss=EXAM_KEYS.filter(k=>!(k in x));if(miss.length)return err('ينقص الاختبار: '+miss.join('، '));lesson.exam=x}
+  const oldKey=EDIT?EDIT.l:null;
+  persistLesson(g,uEn,uAr,lesson,oldKey);
+  store.set('ne.custom',LOCAL);rebuild();EDIT=null;toast('تم حفظ الدرس');go({view:'grade',grade:g,stage:stageOf(g).id});
+}
+function viewSettings(){
+  const vs=TTS.ok?speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang)):[];
+  const cur=TTS.voiceName||'';
+  return `<h1>الصوت والإعدادات</h1>
+  <p class="muted">الأصوات المتاحة تعتمد على جهازك ومتصفحك ونظام التشغيل، ولا يمكن لأي صفحة ويب فرض صوت واحد موحد على كل الأجهزة. اختر الصوت المفضل وسيُحفظ على هذا الجهاز، وإن لم تختر شيئًا ستستخدم المنصة أفضل صوت إنجليزي متاح (بأفضلية للنطق البريطاني).</p>
+  <div class="card form">
+    <label for="vSel">صوت النطق الإنجليزي</label>
+    <select class="f" id="vSel">
+      <option value="">تلقائي — أفضل صوت إنجليزي متاح (بأفضلية بريطاني)</option>
+      ${vs.map(v=>`<option value="${esc(v.name)}" ${v.name===cur?'selected':''}>${esc(v.name)} — ${esc(v.lang)}</option>`).join('')}
+    </select>
+    <div class="row" style="margin-top:14px">
+      <button class="btn primary" data-act="saveVoice">${ic('check',18)} حفظ الاختيار</button>
+      <button class="btn" data-act="testVoice">${ic('vol',18)} جرّب الصوت</button>
+      <button class="btn" data-act="refreshVoices">${ic('redo',18)} تحديث قائمة الأصوات</button>
+    </div>
+    <div class="err" id="vErr" role="alert" style="min-height:0;margin-top:10px"></div>
+    <div class="model" style="margin-top:12px">لأصحاب الآيفون والآيباد: لو القائمة قليلة، نزّل أصوات إنجليزية إضافية من إعدادات الجهاز ← إمكانية الوصول ← المحتوى المنطوق ← الأصوات ← English، ثم ارجع واضغط "تحديث قائمة الأصوات".</div>
+  </div>
+  <p class="muted" style="margin-top:16px">ملاحظة للمعلم: لو حابب صوتًا موحدًا تمامًا لكل الطلاب على كل الأجهزة، فالحل الوحيد هو تسجيل النطق مسبقًا كملفات mp3 ورفعها مع الموقع — أقدر أضيف دعم ملفات الصوت للمفردات ونصوص الاستماع في أي وقت.</p>`;
+}
+function viewProgress(){
+  let rows='';
+  Object.keys(CONTENT).forEach(g=>CONTENT[g].units.forEach((u,ui)=>u.lessons.forEach((l,li)=>{
+    const k=`${g}.${ui}.${li}`,p=PROG[k]||{},pc=lessonPct(k);
+    rows+=`<button class="lrow" data-act="open" data-grade="${g}" data-u="${ui}" data-l="${li}"><span><b class="en">${esc(l.en)}</b><br><span class="muted" style="font-size:14px">${gradeName(g)} · ${p.recite?'التسميع '+p.recite+'% · ':''}${p.exam?'الاختبار '+p.exam+'% · ':''}${p.games?'ألعاب '+p.games:''}</span></span><span class="bar" title="${pc}%"><i style="width:${pc}%"></i></span></button>`})));
+  return `<h1>تقدّمي</h1><p class="muted">يُحفظ التقدّم على هذا الجهاز فقط.</p>${rows||'<div class="empty">لم تبدأ أي درس بعد.</div>'}`;
+}
+
+/* ============ لوحات الدرس ============ */
+function mountPanel(){
+  const el=$('#panel');if(!el)return;const L=curLesson();
+  if(S.tab==='video')panelVideo(el,L);
+  if(S.tab==='vocab')panelVocab(el,L);
+  if(S.tab==='listen')panelListen(el,L);
+  if(S.tab==='games')panelGames(el,L);
+  if(S.tab==='recite')panelRecite(el,L);
+  if(S.tab==='exam')panelExam(el,L);
+}
+function videoEmbed(u){
+  if(!u)return null;let m=u.match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/)([\w-]{11})/);
+  if(m)return `<iframe class="vid" src="https://www.youtube-nocookie.com/embed/${m[1]}" title="شرح الدرس" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+  m=u.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if(m)return `<iframe class="vid" src="https://player.vimeo.com/video/${m[1]}" title="شرح الدرس" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+  if(/\.(mp4|webm)(\?|$)/i.test(u))return `<video class="vid" controls preload="metadata" src="${esc(u)}"></video>`;
+  return null;
+}
+function panelVideo(el,L){
+  const v=videoEmbed(L.video);
+  el.innerHTML=`<div class="card"><h2>شرح الدرس</h2>`+
+    (v?v:`<div class="empty"><h3>لم يُضف فيديو الشرح لهذا الدرس بعد</h3><p>أضف الحقل <code class="en">video</code> داخل الدرس برابط يوتيوب أو Vimeo أو ملف mp4.</p></div>`)+
+    (L.notes?`<div style="margin-top:16px"><h3>ملخص الشرح</h3><p>${esc(L.notes).replace(/\n/g,'<br>')}</p></div>`:'')+`</div>`;
+}
+function panelVocab(el,L){
+  saveProg('vocab',1);
+  el.innerHTML=`<div class="card"><div class="ghead"><h2 style="margin:0">معاني المفردات <span class="pill">${L.vocab.length} كلمة</span></h2>
+    <button class="btn sm" data-act="vocabAll">${ic('play',16)} استمع للكل</button></div>
+    ${L.vocab.map((v,i)=>`<div class="vrow" id="v${i}">${spk(v.w)}<div class="w en">${esc(v.w)}</div><div class="m">${esc(v.ar)}</div>
+      <div class="ex en">${spk(v.ex,true)}<span>${esc(v.ex)}</span></div></div>`).join('')}</div>`;
+}
+function sentences(t){return t.match(/[^.!?]+[.!?]+["”']?/g).map(s=>s.trim())}
+function panelListen(el,L){
+  if(!L.listen){el.innerHTML=`<div class="card"><div class="empty" style="border:0"><h3>لم يُضف نص الاستماع لهذا الدرس بعد</h3></div></div>`;return}
+  const ss=sentences(L.listen.text);
+  el.innerHTML=`<div class="card"><div class="ghead"><h2 class="en" style="margin:0">${esc(L.listen.title)}</h2>
+    <div class="row"><button class="btn primary" data-act="playText">${ic('play',18)} استمع للنص كاملًا</button>
+    <button class="btn" data-act="stopText">${ic('stop',18)} إيقاف</button></div></div>
+    <div class="row" style="margin-bottom:14px"><span class="muted">السرعة</span><div class="seg" id="speed">
+      <button data-act="speed" data-r=".7" aria-pressed="false">بطيئة</button><button data-act="speed" data-r=".9" aria-pressed="true">عادية</button><button data-act="speed" data-r="1.1" aria-pressed="false">سريعة</button></div>
+      <span class="muted" style="font-size:14px">اضغط على أي جملة لسماعها وحدها</span></div>
+    <p class="listen en" id="ltext">${ss.map((s,i)=>`<span class="sent" data-act="sent" data-i="${i}">${esc(s)}</span>`).join(' ')}</p></div>`;
+  el._ss=ss;
+}
+function panelGames(el,L){
+  el.innerHTML=`<div class="gmenu">
+    <button class="gm" data-act="game" data-g="match">${ic('game',26)}<h3 style="margin:0">طابق الكلمات</h3><span class="muted">صِل كل كلمة بمعناها</span></button>
+    <button class="gm" data-act="game" data-g="listen">${ic('head',26)}<h3 style="margin:0">اسمع واختر</h3><span class="muted">اسمع الكلمة واختر معناها</span></button>
+    <button class="gm" data-act="game" data-g="scramble">${ic('layers',26)}<h3 style="margin:0">رتّب الحروف</h3><span class="muted">كوّن الكلمة من حروف مبعثرة</span></button></div>
+    <div class="card" id="gameArea"><div class="empty" style="border:0">اختر لعبة للبدء</div></div>`;
+}
+function result(score,msg,again){return `<div class="result"><div class="score">${score}</div><h3>${msg}</h3><button class="btn primary" data-act="game" data-g="${again}">${ic('redo',18)} العب مرة أخرى</button></div>`}
+function launchGame(g){
+  const el=$('#gameArea'),L=curLesson();stopAll();
+  document.querySelectorAll('.gm').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===g));
+  ({match:gMatch,listen:gListen,scramble:gScramble})[g](el,L);
+}
+function gMatch(el,L){
+  const pairs=shuffle(L.vocab).slice(0,6),en=shuffle(pairs),ar=shuffle(pairs);
+  let sE=null,sA=null,moves=0,bad=null;const done=new Set();
+  const tile=(p,t)=>{const sel=(t==='e'?sE:sA)===p.w,isBad=bad&&bad[t]===p.w,d=done.has(p.w);
+    return `<button class="tile ${t==='e'?'en':''} ${d?'ok':''} ${sel?'sel':''} ${isBad?'bad':''}" data-t="${t}" data-id="${esc(p.w)}" ${d?'disabled':''}>${esc(t==='e'?p.w:p.ar)}</button>`};
+  const draw=()=>{el.innerHTML=`<div class="ghead"><b>صِل كل كلمة إنجليزية بمعناها العربي</b><span class="pill">المحاولات: ${moves}</span></div>
+    <div class="mgrid"><div class="mcol">${en.map(p=>tile(p,'e')).join('')}</div><div class="mcol">${ar.map(p=>tile(p,'a')).join('')}</div></div>`};
+  el.onclick=e=>{const b=e.target.closest('.tile');if(!b||bad)return;
+    if(b.dataset.t==='e'){sE=b.dataset.id;say(sE)}else sA=b.dataset.id;
+    if(sE&&sA){moves++;
+      if(sE===sA){done.add(sE);sE=sA=null;draw();if(done.size===pairs.length){saveProg('games');el.innerHTML=result(moves+' محاولة','أحسنت! طابقت كل الكلمات','match')}}
+      else{bad={e:sE,a:sA};sE=sA=null;draw();setTimeout(()=>{bad=null;draw()},550)}}
+    else draw()};
+  draw();
+}
+function gListen(el,L){
+  const rounds=shuffle(L.vocab).slice(0,8);let i=0,score=0;
+  const q=()=>{
+    if(i>=rounds.length){saveProg('games');el.innerHTML=result(score+' / '+rounds.length,score>=rounds.length*.75?'ممتاز!':'حاول مرة أخرى لتحسين نتيجتك','listen');return}
+    const w=rounds[i],opts=shuffle([w,...shuffle(L.vocab.filter(v=>v!==w)).slice(0,3)]);let ans=false;
+    el.innerHTML=`<div class="ghead"><b>السؤال ${i+1} من ${rounds.length}</b><span class="pill">الدرجة: ${score}</span></div>
+      <div style="text-align:center">${spk(w.w).replace('spk"','spk" style="width:76px;height:76px"')}<p class="muted">اضغط لسماع الكلمة ثم اختر معناها</p></div>
+      <div class="opts">${opts.map(o=>`<button class="opt" data-w="${esc(o.w)}">${esc(o.ar)}</button>`).join('')}</div>`;
+    el.onclick=e=>{const b=e.target.closest('.opt');if(!b||ans)return;ans=true;const ok=b.dataset.w===w.w;if(ok)score++;
+      b.classList.add(ok?'ok':'no');if(!ok)el.querySelector(`.opt[data-w="${CSS.escape(w.w)}"]`).classList.add('ok');
+      setTimeout(()=>{i++;q()},1000)};
+    setTimeout(()=>say(w.w),250)};
+  q();
+}
+function gScramble(el,L){
+  let pool=L.vocab.filter(v=>/^[a-z]+$/i.test(v.w));if(pool.length<3)pool=L.vocab.map(v=>({...v,w:v.w.replace(/\s/g,'')}));
+  const rounds=shuffle(pool).slice(0,6);let i=0,score=0;
+  const q=()=>{
+    if(i>=rounds.length){saveProg('games');el.innerHTML=result(score+' / '+rounds.length,'انتهت اللعبة','scramble');return}
+    const w=rounds[i],target=w.w.toLowerCase();let letters=shuffle(target.split('').map((c,k)=>({c,k}))),picked=[];
+    if(letters.map(x=>x.c).join('')===target&&target.length>1)letters=letters.reverse();
+    const draw=(fb)=>{el.innerHTML=`<div class="ghead"><b>الكلمة ${i+1} من ${rounds.length}</b><span class="pill">الدرجة: ${score}</span></div>
+      <div class="big">${esc(w.ar)}</div>
+      <div class="slots">${target.split('').map((_,k)=>`<div class="slot en">${picked[k]?esc(picked[k].c):''}</div>`).join('')}</div>
+      <div class="tiles">${letters.map(l=>`<button class="tile en" data-k="${l.k}" ${picked.includes(l)?'disabled':''}>${esc(l.c)}</button>`).join('')}</div>
+      <div class="fb ${fb||''}" id="fb"></div>
+      <div class="row" style="justify-content:center"><button class="btn sm" data-r="back">تراجع</button><button class="btn sm" data-r="hint">${ic('vol',16)} استمع</button></div>`};
+    draw();
+    el.onclick=e=>{const b=e.target.closest('button');if(!b)return;
+      if(b.dataset.r==='back'){picked.pop();draw();return}
+      if(b.dataset.r==='hint'){say(w.w);return}
+      if(!b.classList.contains('tile')||b.disabled)return;
+      picked.push(letters.find(l=>String(l.k)===b.dataset.k));draw();
+      if(picked.length===target.length){const ok=picked.map(p=>p.c).join('')===target;
+        $('#fb').textContent=ok?'صحيح ✓':'حاول مرة أخرى';$('#fb').className='fb '+(ok?'ok':'no');
+        if(ok){score++;say(w.w);el.onclick=null;setTimeout(()=>{i++;q()},1100)}else setTimeout(()=>{picked=[];draw()},800)}};
+  };
+  q();
+}
+function panelRecite(el,L){
+  const start=mode=>{
+    const items=shuffle(L.vocab);let i=0;const missed=[];
+    const ask=()=>{
+      if(i>=items.length){const pct=Math.round((items.length-missed.length)/items.length*100);saveProg('recite',pct);
+        el.innerHTML=`<div class="card result"><div class="score">${pct}%</div><h3>${items.length-missed.length} من ${items.length} كلمة صحيحة</h3>
+          ${missed.length?`<p class="muted">كلمات تحتاج مراجعة</p><div class="tiles">${missed.map(m=>`<span class="tile en" style="display:inline-flex;align-items:center;gap:8px">${esc(m.w)} ${spk(m.w,true)}</span>`).join('')}</div>`:'<p>لم تخطئ في أي كلمة!</p>'}
+          <button class="btn primary" data-r="again">${ic('redo',18)} تسميع جديد</button></div>`;
+        el.onclick=e=>{if(e.target.closest('[data-r=again]'))panelRecite(el,L)};return}
+      const w=items[i];
+      el.innerHTML=`<div class="card"><div class="ghead"><b>${mode==='write'?'اكتب الكلمة الإنجليزية':'اسمع ثم اكتب ما سمعته'}</b><span class="pill">${i+1} / ${items.length}</span></div>
+        ${mode==='write'?`<div class="big">${esc(w.ar)}</div>`:`<div style="text-align:center">${spk(w.w).replace('spk"','spk" style="width:76px;height:76px"')}</div>`}
+        <input class="tin en center" id="ans" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="إجابتك">
+        <div class="fb" id="fb"></div>
+        <div class="row" style="justify-content:center"><button class="btn primary" data-r="check">تحقّق</button></div></div>`;
+      const inp=$('#ans');inp.focus();if(mode==='listen')setTimeout(()=>say(w.w),250);
+      let checked=false;
+      const check=()=>{if(checked){i++;ask();return}
+        const ok=norm(inp.value)===norm(w.w);checked=true;if(!ok)missed.push(w);
+        $('#fb').className='fb '+(ok?'ok':'no');$('#fb').innerHTML=ok?'صحيح ✓':`الإجابة الصحيحة: <span class="en">${esc(w.w)}</span>`;
+        say(w.w);inp.disabled=true;el.querySelector('[data-r=check]').textContent=i+1>=items.length?'عرض النتيجة':'التالي'};
+      el.onclick=e=>{const b=e.target.closest('[data-r=check]');if(b)check()};
+      inp.onkeydown=e=>{if(e.key==='Enter')check()};
+    };
+    ask();
+  };
+  el.onclick=e=>{const b=e.target.closest('[data-mode]');if(b)start(b.dataset.mode)};
+  el.innerHTML=`<div class="gmenu"><button class="gm" data-mode="write">${ic('check',26)}<h3 style="margin:0">اكتب من المعنى</h3><span class="muted">يظهر المعنى العربي واكتب الكلمة</span></button>
+    <button class="gm" data-mode="listen">${ic('head',26)}<h3 style="margin:0">اسمع واكتب</h3><span class="muted">تسمع الكلمة وتكتب إملاءها</span></button></div>
+    <p class="muted">التسميع يغطي كل مفردات الدرس (${L.vocab.length} كلمة) بترتيب عشوائي.</p>`;
+}
+
+/* ============ الاختبار الشامل ============ */
+const fmtBr=s=>esc(s).replace(/\(([^)]+)\)/g,'<b class="br">($1)</b>');
+const wc=s=>(s.trim().match(/[A-Za-z0-9][A-Za-z0-9'’-]*/g)||[]).length;
+function panelExam(el,L){
+  if(!L.exam){el.innerHTML=`<div class="card"><div class="empty" style="border:0"><h3>لم يُضف الاختبار الشامل لهذا الدرس بعد</h3></div></div>`;return}
+  const X=L.exam;let it=0;
+  const sel=(opts,a)=>`<span class="it" data-kind="sel" data-ans="${a}" data-show="${esc(opts[a])}"><select class="en"><option value="">اختر…</option>${opts.map((o,i)=>`<option value="${i}">${esc(o)}</option>`).join('')}</select></span>`;
+  const rad=(name,o,a)=>`<div class="it opts" data-kind="radio" data-ans="${a}" data-show="${esc(o[a])}">${o.map((t,i)=>`<label class="op"><input type="radio" name="${name}" value="${i}"><span class="en">${esc(t)}</span></label>`).join('')}</div>`;
+  const txt=a=>`<span class="it" data-kind="txt" data-ans="${esc(a)}" data-show="${esc(a.split('|')[0])}"><input class="tin en" type="text" size="14" autocomplete="off" autocapitalize="off" spellcheck="false"></span>`;
+  const box=[...X.cloze.box].sort();
+  let n=0;
+  const cloze=X.cloze.text.replace(/\{(\d+)\}/g,(m,d)=>sel(box,box.indexOf(X.cloze.ans[d-1])));
+  el.innerHTML=`<div class="exam">
+   <div class="q"><h3><span class="en">Q1: Complete the conversation.</span><small>السؤال الأول: محادثة</small></h3>
+     ${X.conv.map(l=>`<div class="dl en"><b>${esc(l.who)}:</b> ${l.gap?sel(l.gap.o,l.gap.a):esc(l.text)}</div>`).join('')}</div>
+   <div class="q"><h3><span class="en">Q2: Complete the passage with words from the box.</span><small>قطعة قصيرة وصندوق كلمات</small></h3>
+     <div class="box en">${box.map(b=>`<span>${esc(b)}</span>`).join('')}</div><p class="en" style="line-height:2.4;font-size:18px">${cloze}</p></div>
+   <div class="q"><h3><span class="en">Q3: Read the passage, then answer the questions.</span><small>قطعة قراءة وخمسة أسئلة</small></h3>
+     <div class="passage en"><b>${esc(X.read.title)}</b><br>${esc(X.read.text)}</div>
+     <p class="en"><b>A) Choose the correct answer.</b></p>
+     ${X.read.mcq.map((m,i)=>`<div class="qq en"><p>${i+1}. ${esc(m.q)}</p>${rad('r'+i,m.o,m.a)}</div>`).join('')}
+     <p class="en"><b>B) Answer the following questions from the passage.</b></p>
+     ${X.read.wr.map((w,i)=>`<div class="qq en"><p>${i+3}. ${esc(w.q)}</p><textarea class="ta en" rows="2"></textarea><div class="model en" hidden><b>Model answer:</b> ${esc(w.m)}</div></div>`).join('')}</div>
+   <div class="q"><h3><span class="en">Q4: Choose the correct answer.</span><small>اختيار من متعدد</small></h3>
+     ${X.mcq.map((m,i)=>`<div class="qq en"><p>${i+1}. ${esc(m.q)}</p>${rad('m'+i,m.o,m.a)}</div>`).join('')}</div>
+   <div class="q"><h3><span class="en">Q5: Rewrite the following sentences using the words between brackets.</span><small>أعد كتابة الجمل مستخدمًا ما بين القوسين</small></h3>
+     ${X.rewrite.map((r,i)=>`<div class="qq en"><p>${i+1}. ${esc(r.s)} <b class="br">(${esc(r.b)})</b></p><textarea class="ta en" rows="2"></textarea><div class="model en" hidden><b>Model answer:</b> ${esc(r.m)}<br><small>قد توجد صياغات صحيحة أخرى.</small></div></div>`).join('')}</div>
+   <div class="q"><h3><span class="en">Q6: Correct the words between brackets.</span><small>صحّح ما بين القوسين</small></h3>
+     ${X.fix.map((f,i)=>`<div class="qq en"><p>${i+1}. ${fmtBr(f.s)} → ${txt(f.a)}</p></div>`).join('')}</div>
+   <div class="q"><h3><span class="en">Q7: Paragraph writing.</span><small>اكتب فقرة لا تقل عن 100 كلمة</small></h3>
+     <p class="en"><b>${esc(X.para.topic)}</b></p><ul class="en muted">${X.para.tips.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
+     <textarea class="ta en" id="para" rows="9" aria-label="Your paragraph"></textarea><p class="wc no" id="wc">0 / 100 words</p>
+     <div class="model" hidden id="paraNote">راجع فقرتك: مقدمة، ثم تفاصيل، ثم ختام. وتأكد من استخدام مفردات الدرس وصيغ المضارع الصحيحة.</div></div>
+   <div class="sum"><span id="sumTxt">أجب عن الأسئلة ثم سلّم الاختبار</span><button class="btn" data-r="submit">تسليم الاختبار</button></div></div>`;
+  const para=$('#para'),wcEl=$('#wc');
+  para.oninput=()=>{const n=wc(para.value);wcEl.textContent=n+' / 100 words';wcEl.className='wc '+(n>=100?'ok':'no')};
+  el.onclick=e=>{const b=e.target.closest('[data-r]');if(!b)return;
+    if(b.dataset.r==='retry'){panelExam(el,L);window.scrollTo({top:0});return}
+    if(b.dataset.r!=='submit')return;
+    let right=0;const items=el.querySelectorAll('.it');
+    items.forEach(t=>{let v='',ok=false;const k=t.dataset.kind;
+      if(k==='sel')v=t.querySelector('select').value;
+      if(k==='radio'){const c=t.querySelector('input:checked');v=c?c.value:''}
+      if(k==='txt'){v=t.querySelector('input').value;ok=t.dataset.ans.split('|').map(norm).includes(norm(v))}
+      else ok=v===t.dataset.ans;
+      t.classList.add(ok?'right':'wrong');if(ok)right++;
+      if(!ok){const f=document.createElement('span');f.className='fix'+(k==='radio'?'':' inl');f.textContent='✓ '+t.dataset.show;t.after(f)}
+      t.querySelectorAll('input,select').forEach(x=>x.disabled=true)});
+    el.querySelectorAll('.model').forEach(m=>m.hidden=false);
+    el.querySelectorAll('textarea').forEach(x=>x.readOnly=true);
+    const pct=Math.round(right/items.length*100);saveProg('exam',pct);
+    $('#sumTxt').innerHTML=`الدرجة الآلية: <b>${right} / ${items.length}</b> (${pct}%) — الأسئلة الكتابية تُقارن بالإجابة النموذجية أو تُصحّح بواسطة المعلم`;
+    b.dataset.r='retry';b.textContent='إعادة الاختبار';
+    $('#sumTxt').scrollIntoView({block:'center',behavior:'smooth'});
+  };
+}
+
+/* ============ الأحداث ============ */
+const ACT={
+  home:()=>go({view:'home',stage:null,grade:null}),
+  stage:a=>go({view:'stage',stage:a.dataset.stage,grade:null}),
+  grade:a=>{const g=a.dataset.grade;go({view:'grade',grade:g,stage:stageOf(g).id})},
+  open:a=>{const g=a.dataset.grade;go({view:'lesson',grade:g,stage:stageOf(g).id,u:+a.dataset.u,l:+a.dataset.l,tab:'vocab'})},
+  tab:a=>go({tab:a.dataset.tab,view:'lesson'}),
+  progress:()=>go({view:'progress'}),
+  settings:()=>go({view:'settings',stage:null,grade:null}),
+  saveVoice:()=>{const s=$('#vSel');TTS.voiceName=s.value||null;store.set('ne.voice',TTS.voiceName);pickVoice();toast(TTS.voiceName?'تم حفظ الصوت المختار':'سيتم استخدام الصوت التلقائي')},
+  testVoice:()=>{const name=$('#vSel').value||null;const v=name?speechSynthesis.getVoices().find(x=>x.name===name):TTS.voice;
+    if(!v){const e=$('#vErr');e.textContent='لا يوجد صوت إنجليزي متاح بعد — اضغط "تحديث قائمة الأصوات".';return}
+    $('#vErr').textContent='';speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance('Hello! This is a voice test for your English lesson.');u.voice=v;u.lang=v.lang;u.rate=TTS.rate;speechSynthesis.speak(u)},
+  refreshVoices:()=>{if(TTS.ok)speechSynthesis.getVoices();render();toast('تم تحديث القائمة')},
+  teacherGate:()=>TEACHER.on?go({view:'add',stage:null,grade:null}):openGate(),
+  addLesson:()=>{if(!TEACHER.on){openGate();return}EDIT=null;EDIT_EXAM=null;go({view:'add',stage:null,grade:null})},
+  lockTeacher:()=>lockTeacher(),
+  saveLesson:()=>{if(TEACHER.on)saveLesson()},
+  delLesson:a=>{if(TEACHER.on)fullDeleteLesson(a.dataset.g,a.dataset.u,a.dataset.l)},
+  editLesson:a=>{if(!TEACHER.on)return;EDIT={g:a.dataset.g,u:a.dataset.u,l:a.dataset.l};EDIT_EXAM=null;go({view:'add',stage:null,grade:null})},
+  editExam:a=>{if(!TEACHER.on)return;EDIT_EXAM={g:a.dataset.g,u:a.dataset.u,l:a.dataset.l};EDIT=null;go({view:'add',stage:null,grade:null})},
+  saveExam:()=>{if(TEACHER.on)saveExam()},
+  delExam:a=>{if(TEACHER.on)deleteExam(a.dataset.g,a.dataset.u,a.dataset.l)},
+  cancelExam:()=>{EDIT_EXAM=null;render()},
+  cancelEdit:()=>{EDIT=null;render()},
+  importAI:()=>{if(TEACHER.on)importAI()},
+  renameUnit:a=>{if(TEACHER.on)renameUnit(a.dataset.g,a.dataset.u)},
+  delUnit:a=>{if(TEACHER.on)deleteUnit(a.dataset.g,a.dataset.u)},
+  dl:()=>{if(!TEACHER.on)return;const b=new Blob([exportText()],{type:'application/json'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='content.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000);toast('لو لم يبدأ التنزيل استخدم زر النسخ')},
+  cp:()=>{if(!TEACHER.on)return;const t=$('#fOut');t.select();const done=()=>toast('تم نسخ المحتوى');
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t.value).then(done,()=>{try{document.execCommand('copy');done()}catch(e){toast('حدّد النص وانسخه يدويًا')}});
+    else{try{document.execCommand('copy');done()}catch(e){toast('حدّد النص وانسخه يدويًا')}}},
+  theme:()=>applyTheme(currentTheme()==='dark'?'light':'dark'),
+  toggleSide:()=>toggleSide(),
+  closeSide:()=>$('#app').classList.remove('mobile-open'),
+  grp:()=>{if(!mobile()&&UI.side==='collapsed'){UI.side='open';$('#app').dataset.side='open';UI.grp=true}else UI.grp=!UI.grp;renderSide()},
+  say:(a)=>say(a.dataset.t,null,a),
+  vocabAll:()=>{const L=curLesson();playSeq(L.vocab.map(v=>v.w),i=>{document.querySelectorAll('.vrow.hl').forEach(e=>e.classList.remove('hl'));const r=$('#v'+i);r.classList.add('hl');r.scrollIntoView({block:'nearest',behavior:'smooth'})},()=>document.querySelectorAll('.vrow.hl').forEach(e=>e.classList.remove('hl')),.8)},
+  playText:()=>{const ss=$('#panel')._ss;saveProg('listen',1);const sp=document.querySelectorAll('.sent');
+    playSeq(ss,i=>{sp.forEach(s=>s.classList.remove('on'));sp[i].classList.add('on')},()=>sp.forEach(s=>s.classList.remove('on')),TTS.rate)},
+  stopText:()=>stopAll(),
+  sent:a=>{const ss=$('#panel')._ss,i=+a.dataset.i;stopAll();a.classList.add('on');const u=utter(ss[i]);u.onend=u.onerror=()=>a.classList.remove('on');saveProg('listen',1);if(TTS.ok)speechSynthesis.speak(u);else toast('المتصفح لا يدعم النطق الصوتي')},
+  speed:a=>{TTS.rate=+a.dataset.r;document.querySelectorAll('#speed button').forEach(b=>b.setAttribute('aria-pressed',b===a))},
+  game:a=>launchGame(a.dataset.g)
+};
+document.addEventListener('click',e=>{
+  const a=e.target.closest('[data-act]');if(!a)return;
+  const f=ACT[a.dataset.act];if(!f)return;
+  f(a);
+  if(mobile()&&['home','stage','grade','open','tab','progress','addLesson','teacherGate'].includes(a.dataset.act))$('#app').classList.remove('mobile-open');
+});
+document.addEventListener('change',e=>{
+  if(e.target.id==='fGrade')fillUnits();
+  if(e.target.id==='fUnit')$('#fNew').hidden=e.target.value!=='__new';
+  if(e.target.id==='fImport'){if(!TEACHER.on)return;const f=e.target.files[0];if(!f)return;
+    f.text().then(t=>{try{const d=JSON.parse(t);LOCAL=mergeContent(LOCAL,d);store.set('ne.custom',LOCAL);rebuild();toast('تم استيراد المحتوى');render()}catch(_){toast('الملف غير صالح')}})}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#app').classList.remove('mobile-open')});
+
+function render(){
+  if(S.view==='add'&&!TEACHER.on)S.view='home';
+  const v={home:viewHome,stage:viewStage,grade:viewGrade,lesson:viewLesson,progress:viewProgress,add:viewAdd,settings:viewSettings}[S.view];
+  $('#main').innerHTML=v();renderSide();renderTop();
+  if(S.view==='lesson')mountPanel();
+  if(S.view==='add'&&!EDIT&&!EDIT_EXAM)fillUnits();
+}
+(function init(){
+  const t=store.get('ne.theme',null);if(t)document.documentElement.setAttribute('data-theme',t);
+  UI.side=store.get('ne.side','open');if(mobile())UI.side='open';$('#app').dataset.side=UI.side;
+  rebuild();render();
+  try{fetch('content.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{if(d&&typeof d==='object'){FILE=d;rebuild();if(S.view!=='add')render()}}).catch(()=>{})}catch(e){}
+})();
+</script>
+</body>
+</html>
